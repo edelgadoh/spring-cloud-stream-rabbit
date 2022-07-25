@@ -1,0 +1,49 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'application'
+}
+
+mainClassName = 'com.demo.edwin.ConsumerApplication'
+group = 'com.demo.edwin'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'org.springframework.cloud:spring-cloud-stream'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+
+}
+
+ext {
+	set('springCloudVersion', "2020.0.3")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

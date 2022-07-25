@@ -1,0 +1,4 @@
+rootProject.name = 'multiproject-example'
+include 'producer'
+include 'processor'
+include 'consumer'
