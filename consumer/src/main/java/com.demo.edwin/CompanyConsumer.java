@@ -8,12 +8,12 @@ import java.util.function.Consumer;
 
 @Slf4j
 @Component
-public class ValuesConsumer {
+public class CompanyConsumer {
 
     @Bean
-    public Consumer<String> onReceive(){
+    public Consumer<String> companyDomainReceived(){
         return (message) -> {
-            log.info("Received the value {} in consumer", message);
+            log.info("New company domain received {}", message);
         };
     }
 }

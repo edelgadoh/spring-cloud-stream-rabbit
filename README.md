@@ -33,3 +33,8 @@ All the project was tested on:
 - docker version 20.10.13
 - docker-compose version 1.29.2
 - openjdk 11.0.13 2021-10-19
+
+## External links:
+- https://github.com/spring-cloud/spring-cloud-stream/blob/main/docs/src/main/asciidoc/spring-cloud-stream.adoc#spring-cloud-stream-overview-application-model
+- https://cloud.spring.io/spring-cloud-static/spring-cloud-stream-binder-rabbit/2.1.1.RELEASE/multi/multi__configuration_options.html
+- https://cloud.spring.io/spring-cloud-static/Greenwich.RELEASE/multi/multi__rabbitmq_binder.html

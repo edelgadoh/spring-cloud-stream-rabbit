@@ -7,9 +7,18 @@ spring:
 
   cloud:
     stream:
+      rabbit:
+        bindings:
+          input:
+            consumer:
+              autoBindDlq: true
+      function:
+        bindings:
+          validateUniqueDomain-in-0: input
+          validateUniqueDomain-out-0: output
       bindings:
-        convertToUppercase-in-0:
-          destination: values-topic
+        input:
+          destination: processor-topic
           group: processor
-        convertToUppercase-out-0:
-          destination: uppercase-values-topic
+        output:
+          destination: notify-topic

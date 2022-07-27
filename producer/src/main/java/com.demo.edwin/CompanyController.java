@@ -2,6 +2,7 @@ package com.demo.edwin;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-public class ValueController {
+public class CompanyController {
 
+    @Value("${spring.cloud.stream.bindings.processorChannel.destination}")
+    private String bindingName;
+
+    @Autowired
     private StreamBridge streamBridge;
 
-    public ValueController(StreamBridge streamBridge){
-        this.streamBridge = streamBridge;
-    }
-
-    @GetMapping("/values/{value}")
-    public ResponseEntity<String> values(@PathVariable String value){
-        log.info("Sending value {} to topic", value);
-        streamBridge.send("values-topic", value);
+    @GetMapping("/company-domain/{domain}")
+    public ResponseEntity<String> companyDomain(@PathVariable String domain) {
+        log.info("Sending domain {} to topic {}", domain, bindingName);
+        streamBridge.send(bindingName, domain);
         return ResponseEntity.ok("OK");
     }
 

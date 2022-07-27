@@ -7,7 +7,15 @@ spring:
 
   cloud:
     stream:
+      rabbit:
+        bindings:
+          input:
+            consumer:
+              autoBindDlq: true
+      function:
+        bindings:
+          companyDomainReceived-in-0: input
       bindings:
-        onReceive-in-0:
-          destination: uppercase-values-topic
+        input:
+          destination: notify-topic
           group: consumer
