@@ -1,23 +1,27 @@
 # spring-cloud-stream-rabbit
-POC to validate event-driven microservices using Spring Cloud Stream with Rabbit binder.
+Sample project with three event-driven microservices using Spring Cloud Stream & RabbitMQ binder 
+(by using Spring Cloud Stream, it can be changed to Kafka without any effort).
+
+![Architecture](diagram.png?raw=true)
 
 ## Build + Tests
-To build locally and to validate all requirements automatically, run the Unit tests and Functional Tests with:
+To build locally:
 ```
 ./gradlew clean build
 ```
 
 ## Docker-compose
-The Dockerfile is instructed to build the application, create the fat jar and 
+There is a Dockerfile for each microservice to instruct to build the application, create the fat jar and 
 let it ready to be used as an image.
 
-To start the all the microservices in one shot, just execute:
+The docker-compose starts the RabbitMQ broker and the three microservices.
+
+To start the broker and all the microservices in one shot, just execute:
 ```
 docker-compose up -d
 ```
 
- 
-If there is a need to rebuild all the microservices, just include --build in the command:
+To rebuild all the microservices, just include --build in the command:
 ```
 docker-compose up --build
 ```
@@ -25,6 +29,11 @@ docker-compose up --build
 To stop all the microservices, execute:
 ```
 docker-compose down
+```
+
+To see the logs, execute:
+```
+docker-compose logs -f
 ```
 
 ## Notes:
